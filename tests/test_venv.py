@@ -400,11 +400,11 @@ def test_install_command_not_installed_bash(newmocksession):
 
 
 def test_install_python3(tmpdir, newmocksession):
-    if not py.path.local.sysfind('python3.3'):
-        pytest.skip("needs python3.3")
+    if not py.path.local.sysfind('python3.6'):
+        pytest.skip("needs python3.6")
     mocksession = newmocksession([], """
         [testenv:py123]
-        basepython=python3.3
+        basepython=python3.6
         deps=
             dep1
             dep2
@@ -415,7 +415,7 @@ def test_install_python3(tmpdir, newmocksession):
     l = mocksession._pcalls
     assert len(l) == 1
     args = l[0].args
-    assert str(args[2]) == 'virtualenv'
+    assert str(args[2]) == 'venv'
     l[:] = []
     action = mocksession.newaction(venv, "hello")
     venv._install(["hello"], action=action)
