@@ -20,14 +20,7 @@ matrix:
   - os: osx
     language: generic
 
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source .travis-osx; fi
-  - if (( $(echo "$TRAVIS_PYTHON_VERSION > 3" | bc -l) )); then
-        REAL_PATH=$(python -c "import sys; print(sys.real_prefix+'/bin/python3')");
-        $(${REAL_PATH} -m venv virtualenv/python3);
-        deactivate;
-        source virtualenv/python3/bin/activate;
-    fi
+before_install: if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then source .travis-osx; fi
 install: pip install .
 script: tox -e py
 after_success:
