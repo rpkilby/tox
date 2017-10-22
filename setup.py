@@ -63,15 +63,15 @@ def main():
             virtualenv_capped if version == (3, 2) else virtualenv_open
         )
     setuptools.setup(
-        name='tox',
-        description='virtualenv-based automation of test activities',
+        name='tox3',
+        description='python3 test fork of tox',
         long_description=get_long_description(),
-        url='https://tox.readthedocs.org/',
+        url='https://github.com/rpkilby/tox3',
         use_scm_version=True,
         license='http://opensource.org/licenses/MIT',
         platforms=['unix', 'linux', 'osx', 'cygwin', 'win32'],
-        author='holger krekel',
-        author_email='holger@merlinux.eu',
+        author='Ryan P Kilby',
+        author_email='rpkilby@ncsu.edu',
         packages=['tox'],
         entry_points={'console_scripts': 'tox=tox:cmdline\ntox-quickstart=tox._quickstart:main'},
         setup_requires=['setuptools_scm'],
@@ -82,7 +82,7 @@ def main():
         install_requires=install_requires,
         extras_require=extras_require,
         classifiers=[
-                        'Development Status :: 5 - Production/Stable',
+                        'Development Status :: 4 - Beta',
                         'Intended Audience :: Developers',
                         'License :: OSI Approved :: MIT License',
                         'Operating System :: POSIX',
