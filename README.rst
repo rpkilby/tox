@@ -1,39 +1,48 @@
-.. image:: https://img.shields.io/pypi/v/tox.svg
-   :target: https://pypi.org/project/tox/
-.. image:: https://img.shields.io/pypi/pyversions/tox.svg
-  :target: https://pypi.org/project/tox/
-.. image:: https://travis-ci.org/tox-dev/tox.svg?branch=master
-    :target: https://travis-ci.org/tox-dev/tox
-.. image:: https://img.shields.io/appveyor/ci/RonnyPfannschmidt/tox/master.svg
-    :target: https://ci.appveyor.com/project/RonnyPfannschmidt/tox
-.. image:: https://codecov.io/gh/tox-dev/tox/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/tox-dev/tox
-.. image:: https://readthedocs.org/projects/tox/badge/?version=latest
-  :target: http://tox.readthedocs.io/en/latest/?badge=latest
-  :alt: Documentation Status
 
-tox automation project
-======================
+tox3 test fork
+==============
 
-**vision: standardize testing in Python**
+.. image:: https://img.shields.io/pypi/v/tox3.svg
+   :target: https://pypi.org/project/tox3/
+.. image:: https://img.shields.io/pypi/pyversions/tox3.svg
+  :target: https://pypi.org/project/tox3/
+.. image:: https://travis-ci.org/rpkilby/tox3.svg?branch=tox3
+    :target: https://travis-ci.org/rpkilby/tox3
 
-tox aims to automate and standardize testing in Python. It is part of a larger vision of easing the packaging, testing and release process of Python software.
+Official tox project: https://github.com/tox-dev/tox
 
-What is tox?
-============
+What is tox3?
+-------------
 
-tox is a generic virtualenv management and test command line tool you can use for:
+tox3 is a test fork of tox that uses python 3's builtin ``venv`` module (instead of ``virtualenv``) to build test
+environments. ``virtualenv`` is historically python 2/3 compatible, however it ships some files that are pinned at
+their python 2.6 version, such as the ``site`` module (see: pypa/virtualenv#355). These incompatibilities are just
+deprecation warnings for now, but they will eventually become errors.
 
-* checking your package installs correctly with different Python versions and
-  interpreters
+How to use?
+-----------
 
-* running your tests in each of the environments, configuring your test tool of choice
+* Uninstall ``tox``
+* Install ``tox3``
+* Clear your ``.tox/``  working directory
+* Run ``tox`` as normal
 
-* acting as a frontend to Continuous Integration servers, greatly
-  reducing boilerplate and merging CI and shell-based testing.
+What's here?
+------------
 
-For more information and the repository please see:
+This fork contains two branches:
 
-- home and docs: https://tox.readthedocs.org
+* ``py3-venv`` is the branch for the pull request (tox-dev/tox#630)
+* ``tox3`` is the release branch, based off of ``py3-venv``. It contains changes not relevant to the PR, such as a
+  simplified CI config, project setup, etc...
 
-- repository: https://github.com/tox-dev/tox
+Update process
+--------------
+
+Here's how tox3 is kept up-to-date:
+
+* Wait for someone to tell me that tox3 is out-of-date
+* Update ``master`` from upstream tox-dev/tox
+* Rebase ``py3-venv`` onto ``master``
+* Rebase ``tox3`` onto ``py3-venv``
+* Cut new release
